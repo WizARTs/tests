@@ -50,10 +50,11 @@ function checkProgression($input) {
 		} else {
 			if ($isAP) echo $input." is an arithmetic progression and the common difference is ".$d.PHP_EOL;
 			if ($isGP) echo $input." is a geometric progression and the common ratio is ".$r.PHP_EOL;
+			return true;
 		}
 	} else {
 		echo "Please check your input: ".$input.PHP_EOL;
 	}
-	return checkProgression(getSTDIN());
+	return false;
 }
 ?>
