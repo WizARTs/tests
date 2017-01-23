@@ -11,15 +11,18 @@ checkProgression($input);
 
 // get input from STDIN 
 function getSTDIN() {
-	echo "Please input numbers separated by comma: ";
+	echo "Please input numbers separated by commas: ";
 	$input = trim(fgets(STDIN));
 	return $input;
 }
 
 // check for progression
 function checkProgression($input) {
-	
-	$row=array_map('trim',explode(',',$input));
+	$row=array();
+	// check input for numbers separated by commas (white-spaces are allowed)
+	if (preg_match("/^\-?\d+(\.\d*)?(\s*,\s*\-?\d+(\.\d*)?\s*)*$/", $input)) {
+		$row=array_map('trim',explode(',',$input));
+	}
 	
 	if (count($row)>2 && is_numeric($row[0]) && is_numeric($row[1])) {
 		
@@ -53,7 +56,7 @@ function checkProgression($input) {
 			return true;
 		}
 	} else {
-		echo "Please check your input: ".$input.PHP_EOL;
+		echo "Please check your input. Expected numbers separated by commas.".PHP_EOL;
 	}
 	return false;
 }
